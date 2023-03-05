@@ -1,21 +1,18 @@
 import styled from "styled-components";
-
-export default function Baixo() {
+import cards from "../cards";
+export default function Baixo({quantidadeCartas}) {
   return (
     <DivBaixo>
-      <p>0/4 Concluidos</p>
+      <p>{`0/${quantidadeCartas} Concluidos`}</p>
     </DivBaixo>
   );
 }
 
 const DivBaixo = styled.div`
   background-color: rgb(96, 96, 96);
-  width:30vw;
+  width:100%;
   height: 10vh;
   box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.25);
-  position: fixed;
-  bottom: 0;
-  right:445px;
   z-index:1;
   display:flex;
   justify-content:center;

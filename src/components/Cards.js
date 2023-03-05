@@ -1,14 +1,9 @@
 import styled from "styled-components";
-
-export default function Cards() {
+import Card from "./Card";
+export default function Cards({cards}) {
   return (
     <ContainerCards>
-      <Card>Pergunta</Card>
-      <Card>Pergunta</Card>
-      <Card>Pergunta</Card>
-      <Card>Pergunta</Card>
-      <Card>Pergunta</Card>
-      <Card>Pergunta</Card>
+      {cards.map(c => <Card key={c.id} id={c.id} pergunta={c.question} resposta={c.answer} />)}
     </ContainerCards>
   );
 }
@@ -16,16 +11,7 @@ export default function Cards() {
 const ContainerCards = styled.div`
   background-color: rgb(128, 128, 128);
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
 `;
 
-const Card = styled.div`
-  background-color: rgb(32, 32, 32);
-  width: 300px;
-  height: 85px;
-  margin: 15px;
-  border-radius: 5px;
-  color:white;
-`;
+
