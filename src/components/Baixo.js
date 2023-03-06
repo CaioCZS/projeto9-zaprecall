@@ -42,9 +42,9 @@ export default function Baixo({ finalizadas, quantidadeCartas ,todosRespondidos}
 }
 
 const DivBaixo = styled.div`
-  background-color: #ffffff; //rgb(96, 96, 96);
+  background-color:rgb(96, 96, 96);
   width: 100%;
-  height: ${({todosRespondidos}) => todosRespondidos ? "25vh" : "10vh"};///25vh; //10vh;
+  height: ${({todosRespondidos}) => todosRespondidos ? "25vh" : "10vh"};
   box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.25);
   z-index: 1;
   display: flex;
@@ -53,7 +53,7 @@ const DivBaixo = styled.div`
   flex-direction: column;
   padding-bottom: 15px;
   p {
-    color: #333333; //rgb(224, 224, 224);
+    color:rgb(224, 224, 224);
     font-size: 20px;
     margin: 10px;
   }

@@ -7,12 +7,12 @@ export default function Cards({
 }) {
   return (
     <ContainerCards>
-      {cards.map((c) => (
+      {cards.map((c,i) => (
         <Card
           setTodosRespondidos={setTodosRespondidos}
           adicionarFinalizadas={adicionarFinalizadas}
-          key={c.id}
-          id={c.id}
+          key={i}
+          index={i}
           pergunta={c.question}
           resposta={c.answer}
         />

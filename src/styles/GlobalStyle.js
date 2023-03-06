@@ -54,13 +54,13 @@ body{
 	box-sizing: border-box;
 }
 ::-webkit-scrollbar{
-	background-color: rgba(251, 107, 107, 1);//rgb(32, 32, 32);
+	background-color:rgb(32, 32, 32);
 	width:5px;
 	border-top-left-radius:3px ;
 	border-bottom-left-radius:3px ;
 }
 ::-webkit-scrollbar-thumb{
-	background-color:#FFFFFF;//rgb(224, 224, 224);
+	background-color:rgb(224, 224, 224);
 	border-top-left-radius:3px;
 	border-bottom-left-radius:3px;
 }

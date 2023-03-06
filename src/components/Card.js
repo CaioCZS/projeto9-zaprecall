@@ -6,13 +6,18 @@ import certo from "../assets/images/icone_certo.png";
 import erro from "../assets/images/icone_erro.png";
 import quase from "../assets/images/icone_quase.png";
 
-export default function Card({ id, pergunta, resposta, adicionarFinalizadas }) {
-  const [textoCard, setTextoCard] = useState(`Pergunta ${id}`);
+export default function Card({
+  index,
+  pergunta,
+  resposta,
+  adicionarFinalizadas,
+}) {
+  const [textoCard, setTextoCard] = useState(`Pergunta ${index + 1}`);
   const [tamanhoCard, setTamanhoCard] = useState("75px");
   const [margemBtn, setMargemBtn] = useState("0px");
   const [margemP, setMargemP] = useState("0px");
-  const [corP, setCorP] = useState("#333333"); //"#FFFFFF"
-  const [corFundo, setCorFundo] = useState("#FFFFFF"); //"rgb(16, 16, 16)"
+  const [corP, setCorP] = useState("#FFFFFF");
+  const [corFundo, setCorFundo] = useState("rgb(16, 16, 16)");
 
   const botao12 = [
     <Botao12
@@ -56,9 +61,9 @@ export default function Card({ id, pergunta, resposta, adicionarFinalizadas }) {
   ];
   const [botoes, setBotoes] = useState(botao12);
   function fecharCartao(cor) {
-    setTextoCard(`Pergunta ${id}`);
+    setTextoCard(`Pergunta ${index + 1}`);
     setTamanhoCard("75px");
-    setCorFundo("#FFFFFF"); //"rgb(16,16,16)"
+    setCorFundo("rgb(16,16,16)");
     let icone;
     let test;
     if (cor === verde) {
@@ -99,7 +104,7 @@ export default function Card({ id, pergunta, resposta, adicionarFinalizadas }) {
     setMargemBtn("0px");
   }
   function virarCard(btn) {
-    setCorFundo("#FFFFD4"); //"rgb(96,96,96)"
+    setCorFundo("rgb(96,96,96)");
     if (btn === setaPlay) {
       virada1();
     } else {
@@ -111,7 +116,7 @@ export default function Card({ id, pergunta, resposta, adicionarFinalizadas }) {
       <DivCard tamanhoCard={tamanhoCard} corP={corP} corFundo={corFundo}>
         <CardInicial
           data-test="flashcard"
-          key={id}
+          key={index}
           corP={corP}
           margemBtn={margemBtn}
           margemP={margemP}
@@ -134,7 +139,7 @@ const DivCard = styled.div`
   border-radius: 5px;
   color: ${({ corP }) => corP};
   margin: 15px auto;
-  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px -6px 10px rgba(0, 0, 0, 0.35);
   position: relative;
 `;
 
@@ -147,7 +152,7 @@ const CardInicial = styled.div`
   p {
     margin-bottom: ${({ margemP }) => margemP};
     font-size: 16px;
-    text-decoration: ${({ corP }) => corP !== "#333333" && "line-through"};
+    text-decoration: ${({ corP }) => corP !== "#FFFFFF" && "line-through"};
   }
   button {
     margin-top: ${({ margemBtn }) => margemBtn};
@@ -158,8 +163,9 @@ const Botao12 = styled.button`
   width: 30px;
   height: 30px;
   background-color: ${({ corFundo }) =>
-    corFundo ? corFundo : "#FFFFD4"}; //"rgb(96,96,96)"
-  border: thin solid ${({ corFundo }) => (corFundo ? corFundo : "#FFFFD4")}; //"rgb(96,96,96)"
+    corFundo ? corFundo : "rgb(96,96,96)"};
+  border: thin solid
+    ${({ corFundo }) => (corFundo ? corFundo : "rgb(96,96,96)")};
 `;
 const Botoes3 = styled.div`
   width: 100%;

@@ -51,7 +51,7 @@ const Tela = styled.div`
   display: ${({ esconder }) => (esconder === "flex" ? "none" : "block")};
 `;
 const Scroll = styled.div`
-  background-color: #fb6b6b; //rgb(128,128,128)
-  height: ${({todosRespondidos}) => todosRespondidos ? "75vh" : "90vh"};//75vh; //90vh;
+  background-color: rgb(128,128,128);
+  height: ${({todosRespondidos}) => todosRespondidos ? "75vh" : "90vh"};
   overflow-y: auto;
 `;

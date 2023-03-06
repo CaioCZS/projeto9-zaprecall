@@ -13,7 +13,7 @@ export default function TelaInicial({esconder,abrirJogo}) {
 const DivTelaInicial = styled.div`
   height: 100vh;
   width: 414px;
-  background-color: rgba(251, 107, 107, 1);
+  background-color: rgb(96, 96, 96);
   z-index: 2;
   display: ${({esconder}) => esconder };
   flex-direction: column;
@@ -31,11 +31,12 @@ const DivTelaInicial = styled.div`
     height:54px;
     width:70%;
     margin-top: 30px;
-    color:rgba(215, 9, 0, 1);
+    color:rgb(255,255,255);
     font-size:18px;
     font-family:Recursive;
-    border:thin solid rgba(215, 9, 0, 1);
+    border:thin solid rgb(16,16,16);//rgb(128,128,128);
     border-radius:5px;
-    background-color:rgba(255, 255, 255, 1)
+    background-color:rgb(16,16,16);
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.25);
   }
 `;
