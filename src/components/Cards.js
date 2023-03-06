@@ -9,7 +9,6 @@ export default function Cards({cards,adicionarFinalizadas}) {
 }
 
 const ContainerCards = styled.div`
-  background-color: rgb(128, 128, 128);
   width: 100%;
   text-align: center;
 `;

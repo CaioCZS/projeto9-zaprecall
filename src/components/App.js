@@ -26,11 +26,11 @@ export default function App() {
 }
 
 const Tela = styled.div`
-  background-color:rgb(128,128,128) ;
   height:100vh;
   width:414px;
 `
 const Scroll = styled.div`
+  background-color:#FB6B6B;//rgb(128,128,128)
   height:90vh;
   overflow-y: auto;
 `

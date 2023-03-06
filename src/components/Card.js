@@ -11,8 +11,8 @@ export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
   const [tamanhoCard, setTamanhoCard] = useState("75px");
   const [margemBtn, setMargemBtn] = useState("0px");
   const [margemP, setMargemP] = useState("0px");
-  const [corP , setCorP] = useState("white")
-  const [corFundo, setCorFundo] = useState("rgb(16, 16, 16)")
+  const [corP , setCorP] = useState("#333333")//"#FFFFFF"
+  const [corFundo, setCorFundo] = useState("#FFFFFF")//"rgb(16, 16, 16)"
   const botao12 = [
     <Botao12 data-test="play-btn" corFundo={corFundo} margem={false} onClick={() => virarCard(setaPlay)}>
       <img src={setaPlay} alt="seta" />
@@ -40,7 +40,7 @@ export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
   function fecharCartao(cor) {
     setTextoCard(`Pergunta ${id}`);
     setTamanhoCard("75px");
-    setCorFundo("rgb(16,16,16)")
+    setCorFundo("#FFFFFF")//"rgb(16,16,16)"
     let icone;
     let test;
     if(cor === verde){
@@ -81,7 +81,7 @@ export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
     setMargemBtn("0px");
   }
   function virarCard(btn) {
-    setCorFundo("rgb(96,96,96)")
+    setCorFundo("#FFFFD4")//"rgb(96,96,96)"
     if (btn === setaPlay) {
       virada1();
     } else {
@@ -123,7 +123,7 @@ const CardInicial = styled.div`
   p {
     margin-bottom: ${({ margemP }) => margemP};
     font-size: 16px;
-    text-decoration: ${({corP}) => corP !== "white" && "line-through"};
+    text-decoration: ${({corP}) => corP !== "#333333" && "line-through"};
   }
   button {
     margin-top: ${({ margemBtn }) => margemBtn};
@@ -133,8 +133,8 @@ const CardInicial = styled.div`
 const Botao12 = styled.button`
   width: 30px;
   height: 30px;
-  background-color: ${({corFundo}) => corFundo ? corFundo :"rgb(96,96,96)"};
-  border: thin solid ${({corFundo}) => corFundo ? corFundo :"rgb(96,96,96)"};
+  background-color: ${({corFundo}) => corFundo ? corFundo :"#FFFFD4"};//"rgb(96,96,96)"
+  border: thin solid ${({corFundo}) => corFundo ? corFundo :"#FFFFD4"};//"rgb(96,96,96)"
 `;
 const Botoes3 = styled.div`
   width: 100%;

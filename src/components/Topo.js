@@ -21,7 +21,7 @@ const DivTopo = styled.div`
     p{
         font-size:40px;
         font-family:Righteous;
-        color:rgb(224, 224, 224);;
+        color:#FFFFFF;//rgb(224, 224, 224);;
         margin-left:20px;
     }
 `
