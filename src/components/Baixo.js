@@ -13,7 +13,7 @@ export default function Baixo({ finalizadas, quantidadeCartas ,todosRespondidos}
     <DivBaixo todosRespondidos={todosRespondidos} data-test="footer">
       <div data-test="finish-text">
       <MensagemResultado>
-        <img src={imgResultado} alt="icone" />
+        <img src={imgResultado} alt={imgResultado && "icone"} />
         <p>{textoResultado}</p>
       </MensagemResultado>
       <MensagemMotivaçao>
