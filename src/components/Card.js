@@ -2,33 +2,94 @@ import { useState } from "react";
 import styled from "styled-components";
 import setaPlay from "../assets/images/seta_play.png";
 import setaVirar from "../assets/images/seta_virar.png";
-export default function Card({ id, pergunta, resposta }) {
-  const [imagemBotao, setImagemBotao] = useState(setaPlay);
+import certo from "../assets/images/icone_certo.png"
+import erro from "../assets/images/icone_erro.png"
+import quase from "../assets/images/icone_quase.png"
+
+export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
   const [textoCard, setTextoCard] = useState(`Pergunta ${id}`);
+  const [tamanhoCard, setTamanhoCard] = useState("75px");
+  const [margemBtn, setMargemBtn] = useState("0px");
+  const [margemP, setMargemP] = useState("0px");
+  const [corP , setCorP] = useState("white")
   const botao12 = [
-    <>
-      <Botao12>
-        <img src={imagemBotao} alt="seta" />
-      </Botao12>
-    </>,
+    <Botao12 data-test="play-btn" margem={false} onClick={() => virarCard(setaPlay)}>
+      <img src={setaPlay} alt="seta" />
+    </Botao12>,
   ];
+  const verde = "#64bf39";
+  const amarelo = "#f38e2d";
+  const vermelho = "#ed4f2a";
   const botao3 = [
     <>
       <Botoes3>
-        <Botao3 fundo={"#ed4f2a"}>Não lembrei</Botao3>
-        <Botao3 fundo={"#f38e2d"}>Quase não lembrei</Botao3>
-        <Botao3 fundo={"#64bf39"}>Zap!</Botao3>
+        <Botao3 fundo={vermelho} data-test="no-btn" onClick={() => fecharCartao(vermelho)}>
+          Não lembrei
+        </Botao3>
+        <Botao3 fundo={amarelo} data-test="partial-btn" onClick={() => fecharCartao(amarelo)}>
+          Quase não lembrei
+        </Botao3>
+        <Botao3 fundo={verde}  data-test="zap-btn" onClick={() => fecharCartao(verde)}>
+          Zap!
+        </Botao3>
       </Botoes3>
     </>,
   ];
   const [botoes, setBotoes] = useState(botao12);
-  
-
+  function fecharCartao(cor) {
+    setTextoCard(`Pergunta ${id}`);
+    setTamanhoCard("75px");
+    let icone;
+    let test;
+    if(cor === verde){
+        icone = certo
+        test="zap-icon"
+    }else if(cor === amarelo){
+        icone = quase
+        test="partial-icon"
+    }else{
+        icone = erro
+        test="no-icon"
+    }
+    const nvBtn = [
+      <Botao12 >
+        <img src={icone} data-test={test} alt="icone" />
+      </Botao12>,
+    ];
+    setBotoes(nvBtn)
+    setMargemP("0px")
+    setCorP(cor)
+    adicionarFinalizadas(icone)
+  }
+  function virada1() {
+    setTamanhoCard("131px");
+    setTextoCard(pergunta);
+    const nvBtn = [
+      <Botao12 data-test="turn-btn"  onClick={() => virarCard(setaVirar)}>
+        <img src={setaVirar} alt="seta" />
+      </Botao12>,
+    ];
+    setBotoes(nvBtn);
+    setMargemBtn("80px");
+    setMargemP("80px");
+  }
+  function virada2() {
+    setTextoCard(resposta);
+    setBotoes(botao3);
+    setMargemBtn("0px");
+  }
+  function virarCard(btn) {
+    if (btn === setaPlay) {
+      virada1();
+    } else {
+      virada2();
+    }
+  }
   return (
     <>
-      <DivCard>
-        <CardInicial key={id}>
-          <p>{textoCard}</p>
+      <DivCard tamanhoCard={tamanhoCard} corP={corP}>
+        <CardInicial data-test="flashcard" key={id} corP={corP} margemBtn={margemBtn} margemP={margemP}>
+          <p data-test="flashcard-text">{textoCard}</p>
           {botoes.map((b, i) => (
             <div key={i}>{b}</div>
           ))}
@@ -41,10 +102,10 @@ export default function Card({ id, pergunta, resposta }) {
 const DivCard = styled.div`
   background-color: rgb(16, 16, 16);
   width: 85%;
-  height: 75px; //131px
+  height: ${({ tamanhoCard }) => tamanhoCard};
   margin: 15px;
   border-radius: 5px;
-  color: white;
+  color: ${({corP}) => corP};
   margin: 15px auto;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   position: relative;
@@ -57,15 +118,18 @@ const CardInicial = styled.div`
   padding: 0 13px;
   height: 100%;
   p {
-    margin-bottom: 0; //80px
-    font-size: 17px;
+    margin-bottom: ${({ margemP }) => margemP};
+    font-size: 16px;
+    text-decoration: ${({corP}) => corP !== "white" && "line-through"};
+  }
+  button {
+    margin-top: ${({ margemBtn }) => margemBtn};
   }
 `;
 
 const Botao12 = styled.button`
-  width: 10%;
+  width: 30px;
   height: 30px;
-  margin-top: 0; //80px
   background-color: rgb(16, 16, 16);
   border: thin solid rgb(16, 16, 16);
 `;
@@ -77,6 +141,7 @@ const Botoes3 = styled.div`
   left: 15px;
   display: flex;
   align-items: center;
+  margin-top: 50px;
 `;
 
 const Botao3 = styled.button`
