@@ -12,8 +12,9 @@ export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
   const [margemBtn, setMargemBtn] = useState("0px");
   const [margemP, setMargemP] = useState("0px");
   const [corP , setCorP] = useState("white")
+  const [corFundo, setCorFundo] = useState("rgb(16, 16, 16)")
   const botao12 = [
-    <Botao12 data-test="play-btn" margem={false} onClick={() => virarCard(setaPlay)}>
+    <Botao12 data-test="play-btn" corFundo={corFundo} margem={false} onClick={() => virarCard(setaPlay)}>
       <img src={setaPlay} alt="seta" />
     </Botao12>,
   ];
@@ -39,6 +40,7 @@ export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
   function fecharCartao(cor) {
     setTextoCard(`Pergunta ${id}`);
     setTamanhoCard("75px");
+    setCorFundo("rgb(16,16,16)")
     let icone;
     let test;
     if(cor === verde){
@@ -52,7 +54,7 @@ export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
         test="no-icon"
     }
     const nvBtn = [
-      <Botao12 >
+      <Botao12 corFundo={corFundo}>
         <img src={icone} data-test={test} alt="icone" />
       </Botao12>,
     ];
@@ -65,7 +67,7 @@ export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
     setTamanhoCard("131px");
     setTextoCard(pergunta);
     const nvBtn = [
-      <Botao12 data-test="turn-btn"  onClick={() => virarCard(setaVirar)}>
+      <Botao12 data-test="turn-btn" onClick={() => virarCard(setaVirar)}>
         <img src={setaVirar} alt="seta" />
       </Botao12>,
     ];
@@ -79,6 +81,7 @@ export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
     setMargemBtn("0px");
   }
   function virarCard(btn) {
+    setCorFundo("rgb(96,96,96)")
     if (btn === setaPlay) {
       virada1();
     } else {
@@ -87,7 +90,7 @@ export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
   }
   return (
     <>
-      <DivCard tamanhoCard={tamanhoCard} corP={corP}>
+      <DivCard tamanhoCard={tamanhoCard} corP={corP} corFundo={corFundo}>
         <CardInicial data-test="flashcard" key={id} corP={corP} margemBtn={margemBtn} margemP={margemP}>
           <p data-test="flashcard-text">{textoCard}</p>
           {botoes.map((b, i) => (
@@ -100,7 +103,7 @@ export default function Card({ id, pergunta, resposta ,adicionarFinalizadas}) {
 }
 
 const DivCard = styled.div`
-  background-color: rgb(16, 16, 16);
+  background-color: ${({corFundo}) => corFundo};
   width: 85%;
   height: ${({ tamanhoCard }) => tamanhoCard};
   margin: 15px;
@@ -130,8 +133,8 @@ const CardInicial = styled.div`
 const Botao12 = styled.button`
   width: 30px;
   height: 30px;
-  background-color: rgb(16, 16, 16);
-  border: thin solid rgb(16, 16, 16);
+  background-color: ${({corFundo}) => corFundo ? corFundo :"rgb(96,96,96)"};
+  border: thin solid ${({corFundo}) => corFundo ? corFundo :"rgb(96,96,96)"};
 `;
 const Botoes3 = styled.div`
   width: 100%;
